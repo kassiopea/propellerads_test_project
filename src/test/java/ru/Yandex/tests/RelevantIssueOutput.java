@@ -1,5 +1,7 @@
 package ru.Yandex.tests;
-import org.junit.Test;
+import io.qameta.allure.Description;
+import io.qameta.allure.Step;
+import org.junit.jupiter.api.Test;
 import ru.Yandex.TestBase;
 
 
@@ -8,6 +10,8 @@ public class RelevantIssueOutput extends TestBase {
     String searchText = "propellerads";
     String expectedUrl = "https://propellerads.com/";
 
+//    @Step
+    @Description("Проверить, что в выдаче есть искомое слово")
     @Test
     public void getEqualsUrlForTheList() {
         app.goToYandexRu();
@@ -16,6 +20,4 @@ public class RelevantIssueOutput extends TestBase {
         app.getSearchPage().titleContains(searchText);
         app.getSearchPage().isUrlPresent(expectedUrl);
     }
-
-
 }

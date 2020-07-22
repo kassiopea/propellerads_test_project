@@ -1,5 +1,6 @@
 package ru.Yandex.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,7 +15,7 @@ public class MainPage extends BasePage{
 
         super(driver);
     }
-
+    @Step
     public void toFind(String searchQuery) {
         WebElement inputSearch = driver.findElement(By.cssSelector(inputSearchSelector));
         inputSearch.click();

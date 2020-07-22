@@ -1,5 +1,6 @@
 package ru.Yandex.pages;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -16,15 +17,16 @@ public class BasePage {
         this.driver = driver;
     }
 
+
     public void clickToElem(String elemSelector) {
 
         driver.findElement(By.cssSelector(elemSelector)).click();
     }
-
+    @Step
     public void titleContains(String searchQuery) {
         Assert.assertTrue(driver.getTitle().contains(searchQuery));
     }
-
+    @Step
     public void urlContains(String searchQuery) {
         String currentUrl = driver.getCurrentUrl();
         Assert.assertTrue(currentUrl.contains(searchQuery));
@@ -34,14 +36,14 @@ public class BasePage {
         String currentUrl = driver.getCurrentUrl();
         Assert.assertEquals(currentUrl, expectedUrl);
     }
-
+    @Step
     public void isElementPresent(String locator) {
         try {
             driver.findElement(By.cssSelector(locator));
         }catch (NoSuchElementException ignored){
         }
     }
-
+    @Step
     public void isHeaderEquals(String currentHeader, String expectedHeader) {
 //        String currentH1 = driver.findElement(By.cssSelector("h1")).getText();
         Assert.assertEquals(currentHeader, expectedHeader);
@@ -49,9 +51,5 @@ public class BasePage {
 
     public void titleEquals(String expectedTitle) {
         Assert.assertEquals(driver.getTitle(), expectedTitle);
-    }
-
-    public void waitVisibilityElement(String locator) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(locator)));
     }
 }

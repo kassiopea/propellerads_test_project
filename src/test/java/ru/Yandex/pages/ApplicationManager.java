@@ -26,12 +26,12 @@ public class ApplicationManager {
 
         ChromeOptions options = new ChromeOptions();
 //        for non-standard location
-//        options.setBinary("/path/to/other/chrome/binary");
+//        options.setBinary("/usr/local/bin/chromedriver");
         driver = new ChromeDriver(options);
         lcDriver.set(driver);
 
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         wait = new WebDriverWait(driver, 30);
 
         mainPage = new MainPage(driver);

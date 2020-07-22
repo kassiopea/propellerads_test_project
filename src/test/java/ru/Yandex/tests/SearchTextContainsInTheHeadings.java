@@ -1,7 +1,7 @@
 package ru.Yandex.tests;
 
 import io.qameta.allure.Description;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import ru.Yandex.TestBase;
 
 public class SearchTextContainsInTheHeadings extends TestBase {

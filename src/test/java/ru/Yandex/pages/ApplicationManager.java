@@ -4,6 +4,8 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
@@ -12,23 +14,24 @@ public class ApplicationManager {
     public WebDriver driver;
     public WebDriverWait wait;
 
-    public static ThreadLocal<WebDriver> lcDriver = new ThreadLocal<>();
-
     private MainPage mainPage;
     private SearchPage searchPage;
 
-    public void init() {
-        if (lcDriver.get() != null) {
-            driver = lcDriver.get();
-            wait = new WebDriverWait(driver, 30);
-            return;
-        }
+    private String browser;
 
-        ChromeOptions options = new ChromeOptions();
-//        for non-standard location
-//        options.setBinary("/usr/local/bin/chromedriver");
-        driver = new ChromeDriver(options);
-        lcDriver.set(driver);
+    public ApplicationManager(String browser) {
+        this.browser = browser;
+    }
+
+    public void init() {
+        if (browser.equals(BrowserType.CHROME)){
+            driver = new ChromeDriver();
+//            for non-standard location
+//            options.setBinary("/usr/local/bin/chromedriver");
+//            ChromeOptions options = new ChromeOptions();
+        }else {
+            driver = new FirefoxDriver();
+        }
 
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
@@ -36,9 +39,6 @@ public class ApplicationManager {
 
         mainPage = new MainPage(driver);
         searchPage = new SearchPage(driver);
-
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            driver.quit(); driver = null;}));
     }
 
     public void stop() {

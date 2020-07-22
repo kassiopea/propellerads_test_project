@@ -10,7 +10,6 @@ public class RelevantIssueOutput extends TestBase {
     String searchText = "propellerads";
     String expectedUrl = "https://propellerads.com/";
 
-//    @Step
     @Description("Проверить, что в выдаче есть искомое слово")
     @Test
     public void getEqualsUrlForTheList() {

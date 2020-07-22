@@ -5,9 +5,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SearchPage extends BasePage{
@@ -20,6 +18,7 @@ public class SearchPage extends BasePage{
     public SearchPage(WebDriver driver) {
         super(driver);
     }
+
     @Step
     public void relevantHeadersLinks(String expectedText) {
         List<WebElement> listHeaders = driver.findElements(By.cssSelector(headersLocator));

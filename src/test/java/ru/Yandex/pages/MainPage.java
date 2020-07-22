@@ -12,9 +12,9 @@ public class MainPage extends BasePage{
     String listLocator = ".serp-list_left_yes";
 
     public MainPage(WebDriver driver) {
-
         super(driver);
     }
+
     @Step
     public void toFind(String searchQuery) {
         WebElement inputSearch = driver.findElement(By.cssSelector(inputSearchSelector));
